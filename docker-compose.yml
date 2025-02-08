@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:80"
+    environment:
+      - MONGODB_URL=mongodb+srv://2405907:shreyash@elabs.3pswm.mongodb.net/
+      - MONGODB_DBNAME=notes
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
